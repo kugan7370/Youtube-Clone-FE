@@ -10,11 +10,11 @@ function App() {
       <Navbar />
 
       <div className="flex flex-1">
-        <div className="w-[220px]">
+        <div className="w-[80px] lg:w-[220px] md:w-[200px]">
           <SideBar />
         </div>
 
-        <main className=" flex-1 mt-20">
+        <main className="flex-1 mt-20">
           <Routes>
             <Route path="/" element={<Home />} />
           </Routes>

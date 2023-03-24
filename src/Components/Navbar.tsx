@@ -13,7 +13,7 @@ function Navbar() {
                 <div className="flex items-center">
                     <GrMenu size={28} />
                     <BsYoutube className="ml-4" color="red" size={32} />
-                    <h1 className="font-bold text-lg ml-2">Youtube</h1>
+                    <h1 className="font-bold hidden md:block lg:block ml-2 lg:text-lg">Youtube</h1>
                 </div>
 
                 {/* center */}

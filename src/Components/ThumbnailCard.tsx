@@ -3,9 +3,9 @@ const coverImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAA
 const proImage = `https://www.filepicker.io/api/file/JIGkr7PVQeuw9rcBtGuB`
 function ThumbnailCard() {
     return (
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-col lg:w-full mx-auto'>
             {/* image */}
-            <div className="w-80 h-48 rounded-2xl overflow-hidden">
+            <div className="w-60 h-36 lg:w-80 lg:h-48 md:w-60 md:h-36  rounded-2xl overflow-hidden">
                 <img className='w-full h-full object-cover' src={coverImage} alt="img" />
             </div>
 
@@ -18,7 +18,7 @@ function ThumbnailCard() {
                     <h1 className='text-sm text-gray-500 mt-1'>net ninja</h1>
                     <div className="flex">
                         <h1 className='text-sm text-gray-500'>11k views .</h1>
-                        <h1 className='text-sm  text-gray-500'>3 month ago</h1>
+                        <h1 className='text-sm  text-gray-500 ml-1'>3 month ago</h1>
                     </div>
 
                 </div>

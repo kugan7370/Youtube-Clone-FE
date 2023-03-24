@@ -39,7 +39,7 @@ body {
 
 /* handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #e7e6e6;
 }
 
 /* handle on hover */
@@ -52,4 +52,7 @@ body {
   border-radius: 10px;
 }
 
+/* scroll bar heigth */
+::-webkit-scrollbar {
+ line-height: 10px;}
 

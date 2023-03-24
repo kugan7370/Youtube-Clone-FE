@@ -7,7 +7,7 @@ import { MdOutlineSubscriptions, MdOutlineVideoLibrary, MdHistory } from "react-
 import { NavLink } from "react-router-dom";
 function SideBar() {
     return (
-        <div className="w-[220px] h-full px-4 fixed top-20 left-0 z-999 ">
+        <div className="w-[80px] lg:w-[220px] md:w-[200px] h-full px-4 fixed top-20 left-0 z-999 overflow-y-scroll ">
             <div className="flex flex-col space-y-3">
 
                 <NavLink to={"/"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
@@ -49,8 +49,20 @@ function SideBar() {
                 {/* divider */}
                 <div className="border-t-2 border-gray-200 my-4"></div>
 
-                <h1 className="">Subcriptions</h1>
+                <h1 className="hidden lg:block md:block">Subcriptions</h1>
 
+                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                    <MdOutlineSubscriptions size={20} />
+                    <h1 className="ml-4 hidden lg:block md:block ">Subcriptions</h1>
+                </NavLink>
+                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                    <MdOutlineSubscriptions size={20} />
+                    <h1 className="hidden lg:block md:block ml-4">Subcriptions</h1>
+                </NavLink>
+                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                    <MdOutlineSubscriptions size={20} />
+                    <h1 className="hidden lg:block md:block ml-4">Subcriptions</h1>
+                </NavLink>
                 <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
                     <MdOutlineSubscriptions size={20} />
                     <h1 className="ml-4 hidden lg:block md:block ">Subcriptions</h1>
