@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import SideBar from "./Components/SideBar";
+import Details from "./Pages/Details";
 import Home from "./Pages/Home";
 
 function App() {
@@ -10,14 +11,15 @@ function App() {
       <Navbar />
 
       <div className="flex flex-1">
-        <div className="w-[80px] lg:w-[220px] md:w-[200px]">
+        {/* <div className="w-[80px] lg:w-[220px] md:w-[200px]">
           <SideBar />
-        </div>
+        </div> */}
 
-        <main className="flex-1 mt-20">
-          <Routes>
+        <main className="flex-1 mt-[76px]">
+          <Details />
+          {/* <Routes>
             <Route path="/" element={<Home />} />
-          </Routes>
+          </Routes> */}
         </main>
       </div>
     </div>
