@@ -18,9 +18,9 @@ function Details() {
     }
 
     return (
-        <div className='grid grid-cols-5  lg:w-[85%] mx-auto mt-10 gap-5'>
+        <div className='lg:grid lg:grid-cols-5 w-[90%]  lg:w-[85%] md:w-[90%] mx-auto mt-10 lg:gap-5 '>
             {/* left */}
-            <div className="col-span-3 flex flex-col">
+            <div className="lg:col-span-3 lg:flex lg:flex-col">
                 {/* video  */}
                 <iframe
                     width="100%"
@@ -36,7 +36,7 @@ function Details() {
                 <h1 className="font-semibold mt-4">React Video Sharing App UI Design | Youtube UI Clone with React</h1>
 
                 {/* profile details */}
-                <div className="flex items-center mt-4">
+                <div className="lg:flex md:flex items-center mt-4">
                     <div className="flex items-center">
                         <img className='h-10 w-10 rouded-full object-cover' src={proImage} alt="profile" />
                         <div className="ml-4">
@@ -45,7 +45,7 @@ function Details() {
                         </div>
 
 
-                        <div className="ml-4 py-2 px-3 hover:bg-gray-200 bg-gray-100 flex items-center rounded-2xl">
+                        <div className="lg:ml-4 md:ml-4 ml-auto py-2 px-3 flex hover:bg-gray-200 bg-gray-100  items-center rounded-2xl">
                             <TbBellRingingFilled size={20} />
                             <h1 className='ml-2'>Subscriped</h1>
                         </div>
@@ -53,8 +53,12 @@ function Details() {
                     </div>
 
                     {/* like share more  */}
-                    <div className="ml-auto">
+                    <div className="lg:ml-auto md:ml-auto mt-2">
                         <div className="flex">
+                            {/* <div className="lg:hidden md:hidden mr-4 flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-2xl">
+                                <TbBellRingingFilled size={20} />
+                                <h1 className='ml-2'>Subscriped</h1>
+                            </div> */}
 
                             <div className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-l-2xl">
                                 <AiOutlineLike size={20} />
@@ -88,6 +92,25 @@ function Details() {
 
                 </div>
 
+                <div className=" lg:hidden w-full flex flex-col gap-5">
+                    <h1 className="font-semibold  mt-8 md:mt-8 lg:mt-0">Recommended Videos</h1>
+
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                    <RecomandedVideoCard />
+                </div>
+
+
+
+
+
                 {/* comments */}
                 <div className="mt-4">
                     <h1 className="font-semibold mb-4">Comments</h1>
@@ -103,7 +126,9 @@ function Details() {
             </div>
 
             {/* right */}
-            <div className="col-span-2 w-full flex flex-col gap-5">
+            <div className="hidden lg:flex lg:col-span-2 w-full  lg:flex-col gap-5">
+                <h1 className="font-semibold  mt-8 md:mt-8 lg:mt-0">Recommended Videos</h1>
+
                 <RecomandedVideoCard />
                 <RecomandedVideoCard />
                 <RecomandedVideoCard />

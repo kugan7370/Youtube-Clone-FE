@@ -7,12 +7,12 @@ function RecomandedVideoCard() {
     title = title.length > 50 ? title.slice(0, 50) + '...' : title
 
     return (
-        <div className='flex h-36 w-full gap-5'>
-            <div className="flex-1 h-full rounded-2xl overflow-hidden bg-red-300">
-                <img className='w-full h-full' src={coverImage} alt="img" />
+        <div className='flex w-full gap-5'>
+            <div className="mr-auto h-36 w-60 rounded-2xl overflow-hidden bg-red-300">
+                <img className='w-full h-full object-cover' src={coverImage} alt="img" />
             </div>
 
-            <div className="flex flex-col w-60">
+            <div className="ml-auto">
                 <h1 className='text-sm font-normal'>{title}</h1>
                 <h1 className='text-sm text-gray-500 mt-1'>net ninja</h1>
                 <h1 className='text-sm text-gray-500 mt-2'>11k views</h1>
