@@ -8,7 +8,7 @@ function AddComments() {
             <div className="flex ">
                 <img className='h-10 w-10 rouded-full' src={proImage} alt="profile" />
                 {/* //input  */}
-                <input onChange={(e) => setcomment(e.target.value)} value={comment} className='ml-4 w-full outline-none  border rounded-2xl py-2 px-4' type="text" placeholder="Add a  comment..." />
+                <input onChange={(e) => setcomment(e.target.value)} value={comment} className='ml-4 w-full outline-none focus:outline-sky-800 focus:border-none  border rounded-2xl py-2 px-4' type="text" placeholder="Add a  comment..." />
 
                 {/* button  */}
 
