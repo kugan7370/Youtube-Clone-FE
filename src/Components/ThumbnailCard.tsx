@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Videos as VideoProps } from '../types/Video'
+import { HomeVideos } from '../types/Video'
 
 
-function ThumbnailCard({ videoData }: { videoData: VideoProps }) {
+function ThumbnailCard({ videoData }: { videoData: HomeVideos }) {
 
     let covertTilte = videoData.title
 
@@ -22,11 +22,11 @@ function ThumbnailCard({ videoData }: { videoData: VideoProps }) {
 
             {/* details */}
             <div className="w-full flex mt-2">
-                <img className='h-10 w-10 rouded-full' src={videoData.postedBy.img} alt="profile" />
+                <img className='h-10 w-10 rouded-full' src={videoData.userDetails.img} alt="profile" />
                 {/* info */}
                 <div className="flex flex-col lg:ml-2 md:2 ">
                     <h1 className='font-medium text-sm'>{covertTilte}</h1>
-                    <h1 className='text-sm text-gray-500 mt-1'>{videoData.postedBy.username}</h1>
+                    <h1 className='text-sm text-gray-500 mt-1'>{videoData.userDetails.username}</h1>
                     <div className="flex">
                         <h1 className='text-sm text-gray-500'>11k views .</h1>
                         <h1 className='text-sm  text-gray-500 ml-1'>3 month ago</h1>

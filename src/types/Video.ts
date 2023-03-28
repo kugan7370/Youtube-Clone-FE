@@ -18,6 +18,26 @@ export interface Videos {
     commentDetails: CommentDetail[]
 }
 
+export interface HomeVideos {
+    _id: string
+    title: string
+    description: string
+    video: string
+    thumbnail: string
+    views: number
+    likes: number
+    likedBy: string[]
+    dislikes: number
+    dislikedBy: any[]
+    comments: string[]
+    category: string
+    tags: string[]
+    createdAt: string
+    updatedAt: string
+    __v: number
+    userDetails: UserDetails
+}
+
 export interface PostedBy {
     _id: string
     username: string
@@ -42,3 +62,5 @@ export interface CommentDetail {
     email: string
     img: string
 }
+
+export interface UserDetails extends PostedBy { }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { IoCloseCircleOutline } from 'react-icons/io5'
 import { useDispatch } from 'react-redux';
-import { useAppDispatch } from '../app/hooks';
 import { AppDispatch } from '../app/store';
 import { UserLogin } from '../features/Slicer/UserSlicer';
 

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../features/Slicer/SidebarSlicer";
 import LoginModal from "./LoginModal";
 import { RootState } from "../app/store";
-import { userLogout } from "../features/Slicer/UserSlicer";
+import { userLogout, userLogoutCookie } from "../features/Slicer/UserSlicer";
 
 function Navbar() {
     const dispatch = useDispatch()
@@ -20,7 +20,8 @@ function Navbar() {
         setIsOpen(!isOpen)
     }
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        await userLogoutCookie()
         dispatch(userLogout())
     }
 

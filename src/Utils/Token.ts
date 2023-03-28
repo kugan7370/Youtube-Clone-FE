@@ -1,4 +1,11 @@
 export const setCookieToken = (token: string) => {
-    document.cookie = `token=${token}`
+    document.cookie = `access_token=${token}`
 
 }
+
+
+
+
+
+
+

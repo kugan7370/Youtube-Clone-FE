@@ -32,6 +32,21 @@ export const UserLogin = createAsyncThunk('user/fetchUser', async (data: UserPro
     }
 })
 
+export const userLogoutCookie = async () => {
+    try {
+        await axios({
+            method: 'Get',
+            url: 'user/logout',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    }
+    catch (error: any) {
+        console.log(error)
+    }
+}
+
 
 
 
