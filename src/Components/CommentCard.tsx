@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
-const proImage = `https://www.filepicker.io/api/file/JIGkr7PVQeuw9rcBtGuB`
+import { CommentDetail } from '../types/Video'
 
-function CommentCard() {
+interface Props {
+    comment: CommentDetail
+}
+
+function CommentCard({ comment }: Props) {
     const [showMore, setshowMore] = useState(false)
 
-    let commentsDetails = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni tempora asperiores ad molestias. Et dolorem, rerum dolorum odit aut autem facere eius ipsam laborum quaerat, magnam minus dicta nisi libero.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni tempora asperiores ad molestias. Et dolorem, rerum dolorum odit aut autem facere eius ipsam laborum quaerat, magnam minus dicta nisi libero.Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni tempora asperiores ad molestias. Et dolorem, rerum dolorum odit aut autem facere eius ipsam laborum quaerat, magnam minus dicta nisi libero.'
+
+    let commentsDetails = comment.comment
 
     if (commentsDetails.length > 200) {
         if (!showMore) {
@@ -14,14 +19,14 @@ function CommentCard() {
     }
     return (
         <div className='flex'>
-            <img className='h-10 w-10 rouded-full' src={proImage} alt="profile" />
+            <img className='h-10 w-10 rouded-full' src={comment.img} alt="profile" />
             <div className="ml-4">
                 <div className="flex items-center">
-                    <p className="font-semibold text-sm text-gray-600">John Doe</p>
+                    <p className="font-semibold text-sm text-gray-600">{comment.username}</p>
                     <p className=' text-xs ml-2'>1 month ago</p>
                 </div>
                 <p className="text-sm mt-2">{commentsDetails} </p>
-                <h1 className='text-sm font-semibold mt-2 cursor-pointer' onClick={() => setshowMore(!showMore)}>{showMore ? "Show less" : "Read more"}</h1>
+                {commentsDetails.length > 200 && <h1 className='text-sm font-semibold mt-2 cursor-pointer' onClick={() => setshowMore(!showMore)}>{showMore ? "Show less" : "Read more"}</h1>}
 
 
                 <div className="flex items-center mt-4">

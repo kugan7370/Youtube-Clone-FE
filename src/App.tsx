@@ -1,25 +1,38 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import SideBar from "./Components/SideBar";
 import Details from "./Pages/Details";
 import Home from "./Pages/Home";
 
 function App() {
+  const showSidebar = useSelector((state: any) => state.sidebar.showSidebar);
+
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
 
       <div className="flex flex-1">
-        {/* <div className="w-[80px] lg:w-[220px] md:w-[200px]">
+        <div className={`${!showSidebar && "hidden"} w-[80px] lg:w-[220px] md:w-[200px]`}>
           <SideBar />
-        </div> */}
+        </div>
 
         <main className="flex-1 mt-[76px]">
-          <Details />
-          {/* <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes> */}
+
+          <Routes>
+
+            <Route path="/">
+              <Route index element={<Home type="random" />} />
+              <Route path="trends" element={<Home type="trending" />} />
+              <Route path="your-videos" element={<Home type="yourVideos" />} />
+              <Route path="subscriptions-videos" element={<Home type="subscription" />} />
+
+              <Route path="details">
+                <Route path=":id" element={<Details />} />
+              </Route>
+            </Route>
+          </Routes>
         </main>
       </div>
     </div>

@@ -5,9 +5,14 @@ import { BiLike } from "react-icons/bi";
 
 import { MdOutlineSubscriptions, MdOutlineVideoLibrary, MdHistory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
+import UserSubscriptions from "./UserSubscriptions";
+
 function SideBar() {
+    const { user } = useSelector((state: RootState) => state.user)
     return (
-        <div className="w-[80px] lg:w-[220px] md:w-[200px] h-full px-4 fixed top-20 left-0 z-999 overflow-y-scroll ">
+        <div className="w-[80px] lg:w-[220px] md:w-[200px] h-full px-4 fixed top-24 left-0 z-10 overflow-y-scroll ">
             <div className="flex flex-col space-y-3">
 
                 <NavLink to={"/"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
@@ -16,12 +21,12 @@ function SideBar() {
                 </NavLink>
 
 
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                <NavLink to={"trends"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
                     <AiOutlineFire size={20} />
                     <h1 className="lg:block hidden md:block ml-4">Trending</h1>
                 </NavLink>
 
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                <NavLink to={"/subscriptions-videos"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
                     <MdOutlineSubscriptions size={20} />
                     <h1 className="lg:block hidden md:block ml-4">Subcriptions</h1>
                 </NavLink>
@@ -30,7 +35,7 @@ function SideBar() {
                 <div className="border-t-2 border-gray-200 my-4"></div>
 
 
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                <NavLink to={'/your-videos'} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
                     <MdOutlineVideoLibrary size={20} />
                     <h1 className="lg:block hidden md:block ml-4">Your videos</h1>
                 </NavLink>
@@ -51,30 +56,11 @@ function SideBar() {
 
                 <h1 className="hidden lg:block md:block">Subcriptions</h1>
 
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
-                    <MdOutlineSubscriptions size={20} />
-                    <h1 className="ml-4 hidden lg:block md:block ">Subcriptions</h1>
-                </NavLink>
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
-                    <MdOutlineSubscriptions size={20} />
-                    <h1 className="hidden lg:block md:block ml-4">Subcriptions</h1>
-                </NavLink>
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
-                    <MdOutlineSubscriptions size={20} />
-                    <h1 className="hidden lg:block md:block ml-4">Subcriptions</h1>
-                </NavLink>
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
-                    <MdOutlineSubscriptions size={20} />
-                    <h1 className="ml-4 hidden lg:block md:block ">Subcriptions</h1>
-                </NavLink>
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
-                    <MdOutlineSubscriptions size={20} />
-                    <h1 className="hidden lg:block md:block ml-4">Subcriptions</h1>
-                </NavLink>
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
-                    <MdOutlineSubscriptions size={20} />
-                    <h1 className="hidden lg:block md:block ml-4">Subcriptions</h1>
-                </NavLink>
+                {(user && user.subscribtions && user?.subscribtions?.length > 0) && user.subscribtions.map((sub, i) => (
+                    <UserSubscriptions subcriptionData={sub} key={i} />
+                ))}
+
+
 
 
 
