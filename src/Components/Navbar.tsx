@@ -25,6 +25,8 @@ function Navbar() {
         dispatch(userLogout())
     }
 
+
+
     return (
         <>
             <div className="w-full py-4 px-6 border border-gray-100 fixed z-999 bg-white  top-0 right-0 left-0">

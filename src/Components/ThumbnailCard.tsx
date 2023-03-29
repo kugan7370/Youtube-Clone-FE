@@ -28,7 +28,7 @@ function ThumbnailCard({ videoData }: { videoData: HomeVideos }) {
                     <h1 className='font-medium text-sm'>{covertTilte}</h1>
                     <h1 className='text-sm text-gray-500 mt-1'>{videoData.userDetails.username}</h1>
                     <div className="flex">
-                        <h1 className='text-sm text-gray-500'>11k views .</h1>
+                        <h1 className='text-sm text-gray-500'>{videoData.views} views .</h1>
                         <h1 className='text-sm  text-gray-500 ml-1'>3 month ago</h1>
                     </div>
 

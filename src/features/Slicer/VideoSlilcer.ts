@@ -40,4 +40,35 @@ export const getVideoById = async (id: string) => {
 
 }
 
+export const viewVideo = async (id: string) => {
+    try {
+        await axios({
+            method: 'PUT',
+            url: `/video/view/${id}`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+
+export const likeVideo = async (id: string) => {
+    try {
+        await axios({
+            method: 'PUT',
+            url: `/video/like/${id}`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
 

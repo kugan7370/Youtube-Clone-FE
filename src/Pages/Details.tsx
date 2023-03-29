@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import RecomandedVideoCard from '../Components/RecomandedVideoCard'
 import { TbBellRingingFilled } from 'react-icons/tb'
-import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
+import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { RiShareForwardLine } from 'react-icons/ri'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Comments from '../Components/Comments'
 import { disableSidebar } from '../features/Slicer/SidebarSlicer'
 import { useParams } from 'react-router-dom'
-import { getVideoById, } from '../features/Slicer/VideoSlilcer'
-import { AppDispatch, } from '../app/store'
+import { getVideoById, likeVideo, viewVideo, } from '../features/Slicer/VideoSlilcer'
+import { AppDispatch, RootState, } from '../app/store'
 import { Videos } from '../types/Video'
+import { addVideoHistory, subscriptions } from '../features/Slicer/UserSlicer'
 
 function Details() {
     const [showMore, setshowMore] = useState(false)
     const [getVideoDetails, setgetVideoDetails] = useState<Videos[]>()
+    const { user } = useSelector((state: RootState) => state.user)
+    const [isChange, setisChange] = useState(false)
 
 
     const dispatch = useDispatch<AppDispatch>()
@@ -24,6 +27,13 @@ function Details() {
     useEffect(() => {
         (async () => {
             if (!id) return
+            //increase views
+            await viewVideo(id)
+
+            //add video history
+            await addVideoHistory(id)
+
+
             const results = await getVideoById(id)
 
             if (results && results.length > 0) {
@@ -31,7 +41,7 @@ function Details() {
             }
         })();
 
-    }, [id])
+    }, [id, isChange])
 
 
     useEffect(() => {
@@ -44,6 +54,19 @@ function Details() {
     if (videoDeatils && videoDeatils.length > 200) {
         if (!showMore) {
             videoDeatils = videoDeatils.slice(0, 200) + '...'
+        }
+    }
+
+    const handleLiked = async () => {
+        if (id) {
+            await likeVideo(id)
+            setisChange(!isChange)
+        }
+    }
+    const handleSubcriptions = async () => {
+        if (getVideoDetails && getVideoDetails[0].postedBy._id) {
+            await subscriptions(getVideoDetails[0].postedBy._id)
+            setisChange(!isChange)
         }
     }
 
@@ -71,7 +94,7 @@ function Details() {
                             </div>
 
 
-                            <div className="lg:ml-4 md:ml-4 ml-auto py-2 px-3 flex hover:bg-gray-200 bg-gray-100  items-center rounded-2xl">
+                            <div onClick={handleSubcriptions} className="lg:ml-4 md:ml-4 ml-auto py-2 px-3 flex hover:bg-gray-200 bg-gray-100  items-center rounded-2xl">
                                 <TbBellRingingFilled size={20} />
                                 <h1 className='ml-2'>Subscriped</h1>
                             </div>
@@ -81,18 +104,15 @@ function Details() {
                         {/* like share more  */}
                         <div className="lg:ml-auto md:ml-auto mt-2">
                             <div className="flex">
-                                {/* <div className="lg:hidden md:hidden mr-4 flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-2xl">
-                                <TbBellRingingFilled size={20} />
-                                <h1 className='ml-2'>Subscriped</h1>
-                            </div> */}
 
-                                <div className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-l-2xl">
-                                    <AiOutlineLike size={20} />
+
+                                <div onClick={handleLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-l-2xl">
+                                    {user && user._id && (getVideoDetails[0].likedBy.includes(user._id)) ? <AiFillLike size={20} /> : <AiOutlineLike size={20} />}
                                     <p className='ml-2'>{getVideoDetails[0].likes}</p>
                                 </div>
 
-                                <div className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-r-2xl">
-                                    <AiOutlineDislike size={20} />
+                                <div onClick={handleLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-r-2xl">
+                                    {user && user._id && (getVideoDetails[0].dislikedBy.includes(user._id)) ? <AiFillDislike size={20} /> : <AiOutlineDislike size={20} />}
                                     <p className='ml-2'>{getVideoDetails[0].dislikes}</p>
                                 </div>
 

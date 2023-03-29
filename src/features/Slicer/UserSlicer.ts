@@ -47,6 +47,35 @@ export const userLogoutCookie = async () => {
     }
 }
 
+export const subscriptions = async (id: string) => {
+    try {
+        await axios({
+            method: 'PUT',
+            url: `/user/subscribe/${id}`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+export const addVideoHistory = async (id: string) => {
+    try {
+        await axios({
+            method: 'PUT',
+            url: `/user/history/${id}`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 
