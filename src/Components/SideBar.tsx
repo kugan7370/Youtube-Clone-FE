@@ -40,12 +40,12 @@ function SideBar() {
                     <h1 className="lg:block hidden md:block ml-4">Your videos</h1>
                 </NavLink>
 
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                <NavLink to={"/get-viewed"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
                     <MdHistory size={20} />
                     <h1 className="lg:block hidden md:block ml-4">History</h1>
                 </NavLink>
 
-                <NavLink to={"home"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
+                <NavLink to={"/get-liked"} className="flex items-center hover:bg-gray-200 p-2 rounded-lg" >
                     <BiLike size={20} />
                     <h1 className="lg:block hidden md:block ml-4">Liked videos</h1>
                 </NavLink>

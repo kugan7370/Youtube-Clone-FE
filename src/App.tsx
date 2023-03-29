@@ -26,7 +26,9 @@ function App() {
               <Route index element={<Home type="random" />} />
               <Route path="trends" element={<Home type="trending" />} />
               <Route path="your-videos" element={<Home type="yourVideos" />} />
+              <Route path="get-liked" element={<Home type="get-liked" />} />
               <Route path="subscriptions-videos" element={<Home type="subscription" />} />
+              <Route path="get-viewed" element={<Home type="get-viewed" />} />
 
               <Route path="details">
                 <Route path=":id" element={<Details />} />
