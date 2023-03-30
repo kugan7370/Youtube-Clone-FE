@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { HomeVideos } from '../types/Video'
-
+import moment from 'moment'
 
 function ThumbnailCard({ videoData }: { videoData: HomeVideos }) {
 
@@ -29,7 +29,7 @@ function ThumbnailCard({ videoData }: { videoData: HomeVideos }) {
                     <h1 className='text-sm text-gray-500 mt-1'>{videoData.userDetails.username}</h1>
                     <div className="flex">
                         <h1 className='text-sm text-gray-500'>{videoData.views} views .</h1>
-                        <h1 className='text-sm  text-gray-500 ml-1'>3 month ago</h1>
+                        <h1 className='text-sm  text-gray-500 ml-1'>{moment(videoData.createdAt).fromNow()}</h1>
                     </div>
 
                 </div>

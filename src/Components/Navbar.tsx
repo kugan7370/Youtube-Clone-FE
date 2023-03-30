@@ -9,15 +9,20 @@ import { toggleSidebar } from "../features/Slicer/SidebarSlicer";
 import LoginModal from "./LoginModal";
 import { RootState } from "../app/store";
 import { userLogout, userLogoutCookie } from "../features/Slicer/UserSlicer";
+import AddVideoModal from "./AddVideoModal";
 
 function Navbar() {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
+    const [isVideoOpen, setisVideoOpen] = useState(false)
 
     const { user } = useSelector((state: RootState) => state.user)
 
-    const toggleModal = () => {
+    const toggleLoginModal = () => {
         setIsOpen(!isOpen)
+    }
+    const toggleVideoModal = () => {
+        setisVideoOpen(!isVideoOpen)
     }
 
     const handleLogout = async () => {
@@ -61,9 +66,9 @@ function Navbar() {
                         <div className="lg:hidden md:hidden w-12 p-2 ml-4 h-full rounded-full hover:bg-gray-200 flex justify-center items-center">
                             <HiSearch size={26} />
                         </div>
-                        <div className="w-12 p-2 ml-4 h-full rounded-full hover:bg-gray-200 flex justify-center items-center">
+                        {(user && Object.keys(user).length > 0) && <div onClick={toggleVideoModal} className="w-12 p-2 ml-4 h-full rounded-full hover:bg-gray-200 flex justify-center items-center">
                             <TbVideoPlus size={26} />
-                        </div>
+                        </div>}
 
                         <div className="w-12 p-2 ml-4 h-full rounded-full hover:bg-gray-200 flex justify-center items-center">
                             <IoMdNotificationsOutline size={26} />
@@ -72,7 +77,7 @@ function Navbar() {
                             <img src={user.img} className='h-full w-full cursor-pointer rounded-full' alt="profile" />
                         </div>
                             :
-                            <div onClick={toggleModal} className="w-12 p-2 ml-4 h-full cursor-pointer rounded-full hover:bg-gray-200 flex justify-center items-center">
+                            <div onClick={toggleLoginModal} className="w-12 p-2 ml-4 h-full cursor-pointer rounded-full hover:bg-gray-200 flex justify-center items-center">
                                 <h1>Login</h1>
                             </div>
                         }
@@ -81,6 +86,7 @@ function Navbar() {
                 </div>
             </div>
             {isOpen && <LoginModal isOpen={isOpen} setisOpen={setIsOpen} />}
+            {isVideoOpen && <AddVideoModal isVideoOpen={isVideoOpen} setisVideoOpen={setisVideoOpen} />}
         </>
     );
 }

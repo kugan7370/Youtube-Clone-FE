@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { CommentDetail } from '../types/Video'
-
+import moment from 'moment'
 interface Props {
     comment: CommentDetail
 }
@@ -23,7 +23,7 @@ function CommentCard({ comment }: Props) {
             <div className="ml-4">
                 <div className="flex items-center">
                     <p className="font-semibold text-sm text-gray-600">{comment.username}</p>
-                    <p className=' text-xs ml-2'>1 month ago</p>
+                    <p className=' text-xs ml-2'>{moment(comment.createdAt).fromNow()}</p>
                 </div>
                 <p className="text-sm mt-2">{commentsDetails} </p>
                 {commentsDetails.length > 200 && <h1 className='text-sm font-semibold mt-2 cursor-pointer' onClick={() => setshowMore(!showMore)}>{showMore ? "Show less" : "Read more"}</h1>}

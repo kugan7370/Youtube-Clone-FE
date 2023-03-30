@@ -70,5 +70,20 @@ export const likeVideo = async (id: string) => {
         console.log(error)
     }
 }
+export const getRecommendedvideos = async (id: string) => {
+    try {
+        const getVideo = await axios({
+            method: 'get',
+            url: `/video/get-recommended/${id}`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        return getVideo.data.video
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
 
 

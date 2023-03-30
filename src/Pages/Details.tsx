@@ -7,14 +7,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import Comments from '../Components/Comments'
 import { disableSidebar } from '../features/Slicer/SidebarSlicer'
 import { useParams } from 'react-router-dom'
-import { getVideoById, likeVideo, viewVideo, } from '../features/Slicer/VideoSlilcer'
+import { getRecommendedvideos, getVideoById, likeVideo, viewVideo, } from '../features/Slicer/VideoSlilcer'
 import { AppDispatch, RootState, } from '../app/store'
-import { Videos } from '../types/Video'
+import { HomeVideos, Videos } from '../types/Video'
 import { addVideoHistory, subscriptions } from '../features/Slicer/UserSlicer'
 
 function Details() {
     const [showMore, setshowMore] = useState(false)
     const [getVideoDetails, setgetVideoDetails] = useState<Videos[]>()
+    const [getRecommendVideoDetails, setGetRecommendVideoDetails] = useState<HomeVideos[]>()
     const { user } = useSelector((state: RootState) => state.user)
     const [isChange, setisChange] = useState(false)
 
@@ -32,6 +33,12 @@ function Details() {
 
             //add video history
             await addVideoHistory(id)
+
+            //add recommended videos
+            const recommendedVideos = await getRecommendedvideos(id)
+            if (recommendedVideos && recommendedVideos.length > 0) {
+                setGetRecommendVideoDetails(recommendedVideos)
+            }
 
 
             const results = await getVideoById(id)
@@ -78,7 +85,7 @@ function Details() {
                 <div className="lg:col-span-3 lg:flex lg:flex-col">
                     {/* video  */}
 
-                    <video width="100%" height="400px" src="https://res.cloudinary.com/dpr0z7adq/video/upload/v1679985572/August_16_1947_-_Official_Trailer_-_Gautham_Karthik_-_NS_Ponkumar_-_Sean_Roldan_-_AR_Murugadoss_ianbfj.mp4" controls={true} />
+                    <video width="100%" height="400px" src={getVideoDetails[0].video} controls={true} />
 
 
 
@@ -141,16 +148,8 @@ function Details() {
                     <div className=" lg:hidden w-full flex flex-col gap-5">
                         <h1 className="font-semibold  mt-8 md:mt-8 lg:mt-0">Recommended Videos</h1>
 
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
-                        <RecomandedVideoCard />
+                        {getRecommendVideoDetails && getRecommendVideoDetails.map((video) => (<RecomandedVideoCard videoData={video} key={video._id} />))}
+
                     </div>
 
 
@@ -175,16 +174,8 @@ function Details() {
                 <div className="hidden lg:flex lg:col-span-2 w-full  lg:flex-col gap-5">
                     <h1 className="font-semibold  mt-8 md:mt-8 lg:mt-0">Recommended Videos</h1>
 
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
-                    <RecomandedVideoCard />
+                    {getRecommendVideoDetails && getRecommendVideoDetails.map((video) => (<RecomandedVideoCard videoData={video} key={video._id} />))}
+
                 </div>
 
             </div>}
