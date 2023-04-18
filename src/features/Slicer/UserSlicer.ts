@@ -14,7 +14,7 @@ export const UserLogin = createAsyncThunk('user/fetchUser', async (data: UserPro
     try {
         const results = await axios({
             method: 'Post',
-            url: 'user/login',
+            url: '/user/login',
             headers: {
                 'Content-Type': 'application/json',
             },

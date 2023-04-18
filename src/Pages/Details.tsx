@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import RecomandedVideoCard from '../Components/RecomandedVideoCard'
-import { TbBellRingingFilled } from 'react-icons/tb'
+import { TbBellRingingFilled, TbBellRinging } from 'react-icons/tb'
 import { AiFillDislike, AiFillLike, AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { RiShareForwardLine } from 'react-icons/ri'
 import { useDispatch, useSelector } from 'react-redux'
 import Comments from '../Components/Comments'
 import { disableSidebar } from '../features/Slicer/SidebarSlicer'
 import { useParams } from 'react-router-dom'
-import { disLikeVideo, getDislikedVideoId, getLikedVideoId, getRecommendedvideos, getVideoById, handleDislikeVideo, handleLikeVideo, likeVideo, viewVideo, } from '../features/Slicer/VideoSlilcer'
+import { disLikeVideo, getDislikedVideoId, getLikedVideoId, getRecommendedvideos, getSubscribedUserId, getVideoById, handleDislikeVideo, handleLikeVideo, handleSubscribeUser, likeVideo, viewVideo, } from '../features/Slicer/VideoSlilcer'
 import { AppDispatch, RootState, } from '../app/store'
 import { HomeVideos, Videos } from '../types/Video'
 import { addVideoHistory, subscriptions } from '../features/Slicer/UserSlicer'
@@ -17,12 +17,10 @@ function Details() {
     const [getVideoDetails, setgetVideoDetails] = useState<Videos[]>()
     const [getRecommendVideoDetails, setGetRecommendVideoDetails] = useState<HomeVideos[]>()
     const { user } = useSelector((state: RootState) => state.user)
-    const { likeVideo: likedVideo, dislikeVideo: disLikedVideo } = useSelector((state: RootState) => state.video)
+    const { likeVideo: likedVideo, dislikeVideo: disLikedVideo, subscribeUser } = useSelector((state: RootState) => state.video)
     // const [isChange, setisChange] = useState(false)
 
-    if (likedVideo) {
-        console.log(likedVideo)
-    }
+
 
     const dispatch = useDispatch<AppDispatch>()
 
@@ -43,6 +41,9 @@ function Details() {
 
             //get disliked video id
             await dispatch(getDislikedVideoId(id))
+
+            //get subscribed users
+            await dispatch(getSubscribedUserId(id))
 
 
             //add recommended videos
@@ -90,6 +91,7 @@ function Details() {
         }
     }
     const handleSubcriptions = async () => {
+        await dispatch(handleSubscribeUser(user?._id))
         if (getVideoDetails && getVideoDetails[0].postedBy._id) {
             await subscriptions(getVideoDetails[0].postedBy._id)
             // setisChange(!isChange)
@@ -116,13 +118,13 @@ function Details() {
                             <img className='h-10 w-10 rouded-full object-cover' src={getVideoDetails[0].postedBy.img} alt="profile" />
                             <div className="ml-4">
                                 <h1 className="font-semibold">{getVideoDetails[0].postedBy.username}</h1>
-                                <p className="text-sm">{getVideoDetails[0].postedBy.subscripers} subscribers</p>
+                                <p className="text-sm">{subscribeUser.length} subscribers</p>
                             </div>
 
 
                             <div onClick={handleSubcriptions} className="lg:ml-4 md:ml-4 ml-auto py-2 px-3 flex hover:bg-gray-200 bg-gray-100  items-center rounded-2xl">
-                                <TbBellRingingFilled size={20} />
-                                <h1 className='ml-2'>Subscriped</h1>
+                                {user && user._id && subscribeUser.includes(user._id) ? <TbBellRingingFilled size={20} /> : <TbBellRinging size={20} />}
+                                {user && user._id && subscribeUser.includes(user._id) ? <h1 className='ml-2'>Subscriped</h1> : <h1 className='ml-2'>Subscripe</h1>}
                             </div>
 
                         </div>

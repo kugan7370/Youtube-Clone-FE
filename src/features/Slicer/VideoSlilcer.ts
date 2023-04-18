@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { log } from 'console'
+
 
 
 export const getVideos = async (type: string) => {
@@ -137,17 +137,35 @@ export const getDislikedVideoId = createAsyncThunk('video/getDislikedVideoId', a
     }
 }
 )
+export const getSubscribedUserId = createAsyncThunk('video/getSubscribedUsers', async (id: string) => {
+    try {
+        const getVideo = await axios({
+            method: 'get',
+            url: `/video/get-subscribtion-ids/${id}`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        return getVideo.data.video
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+)
 
 interface videoState {
     likeVideo: string[]
     dislikeVideo: string[]
+    subscribeUser: string[]
 }
 
 
 
 const initialState: videoState = {
     likeVideo: [],
-    dislikeVideo: []
+    dislikeVideo: [],
+    subscribeUser: []
 
 }
 
@@ -176,6 +194,14 @@ const VideoSlilcer = createSlice({
                 }
                 state.dislikeVideo.push(action.payload)
             }
+        },
+        handleSubscribeUser: (state, action) => {
+            if (state.subscribeUser.includes(action.payload)) {
+                state.subscribeUser = state.subscribeUser.filter((id) => id !== action.payload)
+            }
+            else {
+                state.subscribeUser.push(action.payload)
+            }
         }
     },
     extraReducers: (builder) => {
@@ -185,11 +211,15 @@ const VideoSlilcer = createSlice({
         builder.addCase(getDislikedVideoId.fulfilled, (state, action) => {
             state.dislikeVideo = action.payload
         })
+        builder.addCase(getSubscribedUserId.fulfilled, (state, action) => {
+            state.subscribeUser = action.payload
+        }
+        )
 
     }
 
 });
 
-export const { handleLikeVideo, handleDislikeVideo } = VideoSlilcer.actions
+export const { handleLikeVideo, handleDislikeVideo, handleSubscribeUser } = VideoSlilcer.actions
 
 export default VideoSlilcer.reducer
