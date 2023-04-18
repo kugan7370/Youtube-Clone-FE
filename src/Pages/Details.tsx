@@ -11,12 +11,14 @@ import { disLikeVideo, getDislikedVideoId, getLikedVideoId, getRecommendedvideos
 import { AppDispatch, RootState, } from '../app/store'
 import { HomeVideos, Videos } from '../types/Video'
 import { addVideoHistory, subscriptions } from '../features/Slicer/UserSlicer'
+import { getCommentByVideoId } from '../features/Slicer/CommentSlicer'
 
 function Details() {
     const [showMore, setshowMore] = useState(false)
     const [getVideoDetails, setgetVideoDetails] = useState<Videos[]>()
     const [getRecommendVideoDetails, setGetRecommendVideoDetails] = useState<HomeVideos[]>()
     const { user } = useSelector((state: RootState) => state.user)
+    const { comments } = useSelector((state: RootState) => state.comment)
     const { likeVideo: likedVideo, dislikeVideo: disLikedVideo, subscribeUser } = useSelector((state: RootState) => state.video)
     // const [isChange, setisChange] = useState(false)
 
@@ -30,6 +32,21 @@ function Details() {
     useEffect(() => {
         (async () => {
             if (!id) return
+
+
+
+            //add recommended videos
+            const recommendedVideos = await getRecommendedvideos(id)
+            if (recommendedVideos && recommendedVideos.length > 0) {
+                setGetRecommendVideoDetails(recommendedVideos)
+            }
+
+
+            const results = await getVideoById(id)
+
+            if (results && results.length > 0) {
+                setgetVideoDetails(results)
+            }
             //increase views
             await viewVideo(id)
 
@@ -45,19 +62,7 @@ function Details() {
             //get subscribed users
             await dispatch(getSubscribedUserId(id))
 
-
-            //add recommended videos
-            const recommendedVideos = await getRecommendedvideos(id)
-            if (recommendedVideos && recommendedVideos.length > 0) {
-                setGetRecommendVideoDetails(recommendedVideos)
-            }
-
-
-            const results = await getVideoById(id)
-
-            if (results && results.length > 0) {
-                setgetVideoDetails(results)
-            }
+            await dispatch(getCommentByVideoId(id))
         })();
 
     }, [id, dispatch])
@@ -181,14 +186,9 @@ function Details() {
                     <div className="mt-4">
                         <h1 className="font-semibold mb-4">Comments</h1>
 
-                        <Comments comments={getVideoDetails[0].commentDetails} />
+                        {comments && <Comments videoId={id} comments={comments} />}
 
                     </div>
-
-
-
-
-
                 </div>
 
                 {/* right */}

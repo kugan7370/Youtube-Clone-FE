@@ -64,3 +64,8 @@ export interface CommentDetail {
 }
 
 export interface UserDetails extends PostedBy { }
+
+export interface CommentProps {
+    comment: string
+    videoId: string
+}

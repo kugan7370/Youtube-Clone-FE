@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { CommentProps } from '../../types/Video'
 
 
 
@@ -95,6 +96,22 @@ export const getRecommendedvideos = async (id: string) => {
             headers: {
                 'Content-Type': 'application/json',
             },
+        })
+        return getVideo.data.video
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+export const addComment = async (data: CommentProps) => {
+    try {
+        const getVideo = await axios({
+            method: 'post',
+            url: `/comment/addComment`,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data
         })
         return getVideo.data.video
     }

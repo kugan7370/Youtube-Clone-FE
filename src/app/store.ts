@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/t
 import SidebarReducers from "../features/Slicer/SidebarSlicer";
 import UserReducers from "../features/Slicer/UserSlicer";
 import VideoReducers from "../features/Slicer/VideoSlilcer";
+import CommentReducers from "../features/Slicer/CommentSlicer";
 
 import {
   persistStore,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
 
   user: UserReducers,
   sidebar: SidebarReducers,
-  video: VideoReducers
+  video: VideoReducers,
+  comment: CommentReducers
 
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)

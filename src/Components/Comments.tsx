@@ -4,14 +4,15 @@ import AddComments from './AddComments'
 import CommentCard from './CommentCard'
 
 interface Props {
-    comments: CommentDetail[]
+    comments: CommentDetail[],
+    videoId?: string
 }
 
-function Comments({ comments }: Props) {
+function Comments({ comments, videoId }: Props) {
     return (
         <div className="px-6">
             {/* add comments  */}
-            <AddComments />
+            <AddComments videoId={videoId} />
 
             {(comments && comments.length > 0) && (<div className='flex flex-col space-y-6 '>
                 {comments?.map((comment) => (

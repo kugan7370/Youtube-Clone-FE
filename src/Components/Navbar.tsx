@@ -34,7 +34,7 @@ function Navbar() {
 
     return (
         <>
-            <div className="w-full py-4 px-6 border border-gray-100 fixed z-999 bg-white  top-0 right-0 left-0">
+            <div className="w-full py-4 px-6 border border-gray-100 fixed z-50 bg-white  top-0 right-0 left-0">
                 <div className="flex items-center justify-between shrink-1">
                     {/* left */}
                     <div className="flex items-center">

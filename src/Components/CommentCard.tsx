@@ -10,7 +10,7 @@ function CommentCard({ comment }: Props) {
     const [showMore, setshowMore] = useState(false)
 
 
-    let commentsDetails = comment.comment
+    let commentsDetails = comment.comment.toString()
 
     if (commentsDetails.length > 200) {
         if (!showMore) {
