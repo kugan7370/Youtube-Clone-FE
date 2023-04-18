@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Comments from '../Components/Comments'
 import { disableSidebar } from '../features/Slicer/SidebarSlicer'
 import { useParams } from 'react-router-dom'
-import { getRecommendedvideos, getVideoById, likeVideo, viewVideo, } from '../features/Slicer/VideoSlilcer'
+import { disLikeVideo, getDislikedVideoId, getLikedVideoId, getRecommendedvideos, getVideoById, handleDislikeVideo, handleLikeVideo, likeVideo, viewVideo, } from '../features/Slicer/VideoSlilcer'
 import { AppDispatch, RootState, } from '../app/store'
 import { HomeVideos, Videos } from '../types/Video'
 import { addVideoHistory, subscriptions } from '../features/Slicer/UserSlicer'
@@ -17,8 +17,12 @@ function Details() {
     const [getVideoDetails, setgetVideoDetails] = useState<Videos[]>()
     const [getRecommendVideoDetails, setGetRecommendVideoDetails] = useState<HomeVideos[]>()
     const { user } = useSelector((state: RootState) => state.user)
-    const [isChange, setisChange] = useState(false)
+    const { likeVideo: likedVideo, dislikeVideo: disLikedVideo } = useSelector((state: RootState) => state.video)
+    // const [isChange, setisChange] = useState(false)
 
+    if (likedVideo) {
+        console.log(likedVideo)
+    }
 
     const dispatch = useDispatch<AppDispatch>()
 
@@ -34,6 +38,13 @@ function Details() {
             //add video history
             await addVideoHistory(id)
 
+            //get  liked video id
+            await dispatch(getLikedVideoId(id))
+
+            //get disliked video id
+            await dispatch(getDislikedVideoId(id))
+
+
             //add recommended videos
             const recommendedVideos = await getRecommendedvideos(id)
             if (recommendedVideos && recommendedVideos.length > 0) {
@@ -48,7 +59,7 @@ function Details() {
             }
         })();
 
-    }, [id, isChange])
+    }, [id, dispatch])
 
 
     useEffect(() => {
@@ -65,15 +76,23 @@ function Details() {
     }
 
     const handleLiked = async () => {
-        if (id) {
+        if (id && user) {
+            dispatch(handleLikeVideo(user._id))
             await likeVideo(id)
-            setisChange(!isChange)
+            // setisChange(!isChange)
+        }
+    }
+    const handledisLiked = async () => {
+        if (id && user) {
+            dispatch(handleDislikeVideo(user._id))
+            await disLikeVideo(id)
+            // setisChange(!isChange)
         }
     }
     const handleSubcriptions = async () => {
         if (getVideoDetails && getVideoDetails[0].postedBy._id) {
             await subscriptions(getVideoDetails[0].postedBy._id)
-            setisChange(!isChange)
+            // setisChange(!isChange)
         }
     }
 
@@ -114,13 +133,13 @@ function Details() {
 
 
                                 <div onClick={handleLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-l-2xl">
-                                    {user && user._id && (getVideoDetails[0].likedBy.includes(user._id)) ? <AiFillLike size={20} /> : <AiOutlineLike size={20} />}
-                                    <p className='ml-2'>{getVideoDetails[0].likes}</p>
+                                    {user && user._id && (likedVideo.includes(user._id)) ? <AiFillLike size={20} /> : <AiOutlineLike size={20} />}
+                                    <p className='ml-2'>{likedVideo.length}</p>
                                 </div>
 
-                                <div onClick={handleLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-r-2xl">
-                                    {user && user._id && (getVideoDetails[0].dislikedBy.includes(user._id)) ? <AiFillDislike size={20} /> : <AiOutlineDislike size={20} />}
-                                    <p className='ml-2'>{getVideoDetails[0].dislikes}</p>
+                                <div onClick={handledisLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-r-2xl">
+                                    {user && user._id && (disLikedVideo.includes(user._id)) ? <AiFillDislike size={20} /> : <AiOutlineDislike size={20} />}
+                                    <p className='ml-2'>{disLikedVideo.length}</p>
                                 </div>
 
                                 <div className="ml-5">
