@@ -55,5 +55,5 @@
   "main": "index.js",
   "author": "Kugan Priyan <kugapriyanj97@gmail.com>",
   "license": "MIT",
-  "proxy": "http://localhost:5000/api"
+  "proxy": "https://youtube-clone-be.onrender.com/api"
 }
