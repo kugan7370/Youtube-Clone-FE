@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { CommentProps } from '../../types/Video'
-
+import { Host } from '../../Utils/host'
 
 
 export const getVideos = async (type: string) => {
     try {
         const getVideo = await axios({
             method: 'GET',
-            url: `/video/${type}`,
+            url: `${Host}/video/${type}`,
             headers: {
                 'Content-Type': 'application/json',
             },

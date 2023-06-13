@@ -1,0 +1,1 @@
+export const Host = "https://youtube-clone-be.onrender.com/api"
