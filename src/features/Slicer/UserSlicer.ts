@@ -39,7 +39,7 @@ export const userLogoutCookie = async () => {
     try {
         await axios({
             method: 'Get',
-            url: `${Host}user/logout`,
+            url: `${Host}/user/logout`,
             headers: {
                 'Content-Type': 'application/json',
             },
