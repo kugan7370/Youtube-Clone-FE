@@ -4,6 +4,7 @@ import { CommentProps } from '../../types/Video'
 import { Host } from '../../Utils/host'
 
 
+
 export const getVideos = async (type: string) => {
     try {
         const getVideo = await axios({
@@ -28,7 +29,7 @@ export const getVideoById = async (id: string) => {
     try {
         const getVideo = await axios({
             method: 'GET',
-            url: `/video/get/${id}`,
+            url: `${Host}/video/get/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -48,7 +49,7 @@ export const viewVideo = async (id: string) => {
     try {
         await axios({
             method: 'PUT',
-            url: `/video/view/${id}`,
+            url: `${Host}/video/view/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -64,7 +65,7 @@ export const likeVideo = async (id: string) => {
     try {
         await axios({
             method: 'PUT',
-            url: `/video/like/${id}`,
+            url: `${Host}/video/like/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -78,7 +79,7 @@ export const disLikeVideo = async (id: string) => {
     try {
         await axios({
             method: 'PUT',
-            url: `/video/dislike/${id}`,
+            url: `${Host}/video/dislike/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -92,7 +93,7 @@ export const getRecommendedvideos = async (id: string) => {
     try {
         const getVideo = await axios({
             method: 'get',
-            url: `/video/get-recommended/${id}`,
+            url: `${Host}/video/get-recommended/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -107,7 +108,7 @@ export const addComment = async (data: CommentProps) => {
     try {
         const getVideo = await axios({
             method: 'post',
-            url: `/comment/addComment`,
+            url: `${Host}/comment/addComment`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -124,7 +125,7 @@ export const getLikedVideoId = createAsyncThunk('video/getLikedVideoId', async (
     try {
         const getVideo = await axios({
             method: 'get',
-            url: `/video/get-liked-userId/${id}`,
+            url: `${Host}/video/get-liked-userId/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -142,7 +143,7 @@ export const getDislikedVideoId = createAsyncThunk('video/getDislikedVideoId', a
     try {
         const getVideo = await axios({
             method: 'get',
-            url: `/video/get-disliked-userId/${id}`,
+            url: `${Host}/video/get-disliked-userId/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -158,7 +159,7 @@ export const getSubscribedUserId = createAsyncThunk('video/getSubscribedUsers', 
     try {
         const getVideo = await axios({
             method: 'get',
-            url: `/video/get-subscribtion-ids/${id}`,
+            url: `${Host}/video/get-subscribtion-ids/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },

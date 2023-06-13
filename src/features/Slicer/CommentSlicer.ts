@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { Host } from '../../Utils/host';
+
 
 export const getCommentByVideoId = createAsyncThunk('comment/getComments', async (id: string) => {
     try {
         const getVideo = await axios({
             method: 'get',
-            url: `/comment/getCommentByVideoId/${id}`,
+            url: `${Host}/comment/getCommentByVideoId/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },

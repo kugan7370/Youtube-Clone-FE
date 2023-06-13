@@ -1,1 +1,1 @@
-export const Host = "https://youtube-clone-be.onrender.com/api"
+export const Host = process.env.REACT_APP_HOST_URL

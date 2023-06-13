@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { UserState } from '../../types/User';
 import { setCookieToken } from '../../Utils/Token';
+import { Host } from '../../Utils/host';
+
+
 
 interface UserProps {
     email: string
@@ -14,7 +17,7 @@ export const UserLogin = createAsyncThunk('user/fetchUser', async (data: UserPro
     try {
         const results = await axios({
             method: 'Post',
-            url: '/user/login',
+            url: `${Host}/user/login`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -36,7 +39,7 @@ export const userLogoutCookie = async () => {
     try {
         await axios({
             method: 'Get',
-            url: 'user/logout',
+            url: `${Host}user/logout`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -51,7 +54,7 @@ export const subscriptions = async (id: string) => {
     try {
         await axios({
             method: 'PUT',
-            url: `/user/subscribe/${id}`,
+            url: `${Host}/user/subscribe/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -65,7 +68,7 @@ export const addVideoHistory = async (id: string) => {
     try {
         await axios({
             method: 'PUT',
-            url: `/user/history/${id}`,
+            url: `${Host}/user/history/${id}`,
             headers: {
                 'Content-Type': 'application/json',
             },

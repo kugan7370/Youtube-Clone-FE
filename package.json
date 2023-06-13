@@ -54,6 +54,6 @@
   },
   "main": "index.js",
   "author": "Kugan Priyan <kugapriyanj97@gmail.com>",
-  "license": "MIT",
-  "proxy": "https://youtube-clone-be.onrender.com/api"
+  "license": "MIT"
+ 
 }
