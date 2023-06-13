@@ -20,7 +20,7 @@ function CommentCard({ comment }: Props) {
     return (
         <div className='flex'>
             <img className='h-10 w-10 rouded-full' src={comment.img} alt="profile" />
-            <div className="ml-4">
+            <div className="ml-4 mb-4">
                 <div className="flex items-center">
                     <p className="font-semibold text-sm text-gray-600">{comment.username}</p>
                     <p className=' text-xs ml-2'>{moment(comment.createdAt).fromNow()}</p>
@@ -29,7 +29,7 @@ function CommentCard({ comment }: Props) {
                 {commentsDetails.length > 200 && <h1 className='text-sm font-semibold mt-2 cursor-pointer' onClick={() => setshowMore(!showMore)}>{showMore ? "Show less" : "Read more"}</h1>}
 
 
-                <div className="flex items-center mt-4">
+                {/* <div className="flex items-center mt-4">
 
                     <div className="p-2 hover:bg-gray-200 bg-gray-100 flex items-center rounded-2xl">
                         <AiOutlineLike size={20} />
@@ -45,7 +45,7 @@ function CommentCard({ comment }: Props) {
 
 
 
-                </div>
+                </div> */}
             </div>
 
 
