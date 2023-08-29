@@ -192,29 +192,29 @@ const VideoSlilcer = createSlice({
     initialState,
     reducers: {
         handleLikeVideo: (state, action) => {
-            if (state.likeVideo.includes(action.payload)) {
+            if (state.likeVideo?.includes(action.payload)) {
                 state.likeVideo = state.likeVideo.filter((id) => id !== action.payload)
             }
             else {
-                if (state.dislikeVideo.includes(action.payload)) {
+                if (state.dislikeVideo?.includes(action.payload)) {
                     state.dislikeVideo = state.dislikeVideo.filter((id) => id !== action.payload)
                 }
                 state.likeVideo.push(action.payload)
             }
         },
         handleDislikeVideo: (state, action) => {
-            if (state.dislikeVideo.includes(action.payload)) {
+            if (state.dislikeVideo?.includes(action.payload)) {
                 state.dislikeVideo = state.dislikeVideo.filter((id) => id !== action.payload)
             }
             else {
-                if (state.likeVideo.includes(action.payload)) {
+                if (state.likeVideo?.includes(action.payload)) {
                     state.likeVideo = state.likeVideo.filter((id) => id !== action.payload)
                 }
                 state.dislikeVideo.push(action.payload)
             }
         },
         handleSubscribeUser: (state, action) => {
-            if (state.subscribeUser.includes(action.payload)) {
+            if (state.subscribeUser?.includes(action.payload)) {
                 state.subscribeUser = state.subscribeUser.filter((id) => id !== action.payload)
             }
             else {

@@ -128,8 +128,8 @@ function Details() {
 
 
                             <div onClick={handleSubcriptions} className="lg:ml-4 md:ml-4 ml-auto py-2 px-3 flex hover:bg-gray-200 bg-gray-100  items-center rounded-2xl">
-                                {user && user._id && subscribeUser.includes(user._id) ? <TbBellRingingFilled size={20} /> : <TbBellRinging size={20} />}
-                                {user && user._id && subscribeUser.includes(user._id) ? <h1 className='ml-2'>Subscriped</h1> : <h1 className='ml-2'>Subscripe</h1>}
+                                {user && user._id && subscribeUser?.includes(user._id) ? <TbBellRingingFilled size={20} /> : <TbBellRinging size={20} />}
+                                {user && user._id && subscribeUser?.includes(user._id) ? <h1 className='ml-2'>Subscriped</h1> : <h1 className='ml-2'>Subscripe</h1>}
                             </div>
 
                         </div>
@@ -140,12 +140,12 @@ function Details() {
 
 
                                 <div onClick={handleLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-l-2xl">
-                                    {user && user._id && (likedVideo.includes(user._id)) ? <AiFillLike size={20} /> : <AiOutlineLike size={20} />}
+                                    {user && user._id && (likedVideo?.includes(user._id)) ? <AiFillLike size={20} /> : <AiOutlineLike size={20} />}
                                     <p className='ml-2'>{likedVideo?.length}</p>
                                 </div>
 
                                 <div onClick={handledisLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-r-2xl">
-                                    {user && user._id && (disLikedVideo.includes(user._id)) ? <AiFillDislike size={20} /> : <AiOutlineDislike size={20} />}
+                                    {user && user._id && (disLikedVideo?.includes(user._id)) ? <AiFillDislike size={20} /> : <AiOutlineDislike size={20} />}
                                     <p className='ml-2'>{disLikedVideo?.length}</p>
                                 </div>
 
