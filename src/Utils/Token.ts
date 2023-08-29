@@ -1,6 +1,10 @@
 export const setCookieToken = (token: string) => {
-    const expirationDate = new Date(Date.now() + 86400000);
-    document.cookie = `access_token=${token} Secure; SameSite=None; domain=${process.env.REACT_APP_DOMAIN}; path=/ ; expires=${expirationDate.toUTCString()}`
+    //expires in 1 day
+    const date = new Date()
+    date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000))
+    const expires = `expires=${date.toUTCString()}`
+
+    document.cookie = `access_token=${token}; Secure; SameSite=None; ${expires};`
 }
 
 

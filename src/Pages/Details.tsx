@@ -37,14 +37,14 @@ function Details() {
 
             //add recommended videos
             const recommendedVideos = await getRecommendedvideos(id)
-            if (recommendedVideos && recommendedVideos.length > 0) {
+            if (recommendedVideos && recommendedVideos?.length > 0) {
                 setGetRecommendVideoDetails(recommendedVideos)
             }
 
 
             const results = await getVideoById(id)
 
-            if (results && results.length > 0) {
+            if (results && results?.length > 0) {
                 setgetVideoDetails(results)
             }
             //increase views
@@ -75,7 +75,7 @@ function Details() {
 
     let videoDeatils = getVideoDetails && getVideoDetails[0].description
 
-    if (videoDeatils && videoDeatils.length > 200) {
+    if (videoDeatils && videoDeatils?.length > 200) {
         if (!showMore) {
             videoDeatils = videoDeatils.slice(0, 200) + '...'
         }
@@ -123,7 +123,7 @@ function Details() {
                             <img className='h-10 w-10 rouded-full object-cover' src={getVideoDetails[0].postedBy.img} alt="profile" />
                             <div className="ml-4">
                                 <h1 className="font-semibold">{getVideoDetails[0].postedBy.username}</h1>
-                                <p className="text-sm">{subscribeUser.length} subscribers</p>
+                                <p className="text-sm">{subscribeUser?.length} subscribers</p>
                             </div>
 
 
@@ -141,12 +141,12 @@ function Details() {
 
                                 <div onClick={handleLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-l-2xl">
                                     {user && user._id && (likedVideo.includes(user._id)) ? <AiFillLike size={20} /> : <AiOutlineLike size={20} />}
-                                    <p className='ml-2'>{likedVideo.length}</p>
+                                    <p className='ml-2'>{likedVideo?.length}</p>
                                 </div>
 
                                 <div onClick={handledisLiked} className="flex items-center py-2 px-3 hover:bg-gray-200 bg-gray-100 rounded-r-2xl">
                                     {user && user._id && (disLikedVideo.includes(user._id)) ? <AiFillDislike size={20} /> : <AiOutlineDislike size={20} />}
-                                    <p className='ml-2'>{disLikedVideo.length}</p>
+                                    <p className='ml-2'>{disLikedVideo?.length}</p>
                                 </div>
 
                                 <div className="ml-5">
