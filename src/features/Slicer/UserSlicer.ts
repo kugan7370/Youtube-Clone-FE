@@ -23,9 +23,9 @@ export const UserLogin = createAsyncThunk('user/fetchUser', async (data: UserPro
             },
             data
         })
-        if (results.data.token) {
-            setCookieToken(results.data.token)
-        }
+        // if (results.data.token) {
+        //     setCookieToken(results.data.token)
+        // }
         return results.data
 
     } catch (error: any) {
