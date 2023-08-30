@@ -60,7 +60,7 @@ export const subscriptions = async (id: string) => {
             url: `${Host}/user/subscribe/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
             },
         })
     }
@@ -75,7 +75,7 @@ export const addVideoHistory = async (id: string) => {
             url: `${Host}/user/history/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
             },
         })
     }

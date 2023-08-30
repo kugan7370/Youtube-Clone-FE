@@ -11,7 +11,7 @@ export const getCommentByVideoId = createAsyncThunk('comment/getComments', async
             url: `${Host}/comment/getCommentByVideoId/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
 
             },
         })

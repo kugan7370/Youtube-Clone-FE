@@ -13,6 +13,8 @@ export const getVideos = async (type: string) => {
             url: `${Host}/video/${type}`,
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${await getToken()}`
+
             },
         })
 
@@ -53,7 +55,7 @@ export const viewVideo = async (id: string) => {
             url: `${Host}/video/view/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
             },
         })
     }
@@ -70,7 +72,7 @@ export const likeVideo = async (id: string) => {
             url: `${Host}/video/like/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
 
             },
         })
@@ -86,7 +88,7 @@ export const disLikeVideo = async (id: string) => {
             url: `${Host}/video/dislike/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
 
             },
         })
@@ -117,7 +119,7 @@ export const addComment = async (data: CommentProps) => {
             url: `${Host}/comment/addComment`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
 
             },
             data
@@ -136,7 +138,7 @@ export const getLikedVideoId = createAsyncThunk('video/getLikedVideoId', async (
             url: `${Host}/video/get-liked-userId/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
 
             },
         })
@@ -156,7 +158,7 @@ export const getDislikedVideoId = createAsyncThunk('video/getDislikedVideoId', a
             url: `${Host}/video/get-disliked-userId/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
 
             },
         })
@@ -174,7 +176,7 @@ export const getSubscribedUserId = createAsyncThunk('video/getSubscribedUsers', 
             url: `${Host}/video/get-subscribtion-ids/${id}`,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${getToken()}`
+                'Authorization': `Bearer ${await getToken()}`
 
             },
         })

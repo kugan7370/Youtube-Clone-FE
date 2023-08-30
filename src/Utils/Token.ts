@@ -4,16 +4,26 @@
 //     date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000))
 //     const expires = `expires=${date.toUTCString()}`
 
+
+
+
 //     document.cookie = `access_token=${token}; Secure; SameSite=None; ${expires};`
 // }
 
 
-export const getToken = () => {
-  return localStorage.getItem('acces_token');
+export const getToken = async () => {
+  let token = await localStorage.getItem('acces_token');
+
+  if (!token) {
+    return null;
+  }
+
+  token = token.replace(/"/g, '');
+  return token;
 };
 
 export const setToken = async (token: string) => {
-  await localStorage.setItem('acces_token', token);
+  localStorage.setItem('acces_token', token);
 }
 export const clearToken = () => {
   localStorage.removeItem('acces_token');
