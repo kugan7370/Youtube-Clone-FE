@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { Host } from '../../Utils/host';
+import { getToken } from '../../Utils/Token';
 
 
 export const getCommentByVideoId = createAsyncThunk('comment/getComments', async (id: string) => {
@@ -10,6 +11,8 @@ export const getCommentByVideoId = createAsyncThunk('comment/getComments', async
             url: `${Host}/comment/getCommentByVideoId/${id}`,
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
+
             },
         })
         return getVideo.data.comment

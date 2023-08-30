@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { UserState } from '../../types/User';
-import { setCookieToken } from '../../Utils/Token';
+import { clearToken, getToken, setToken } from '../../Utils/Token';
 import { Host } from '../../Utils/host';
 
 
@@ -20,12 +20,14 @@ export const UserLogin = createAsyncThunk('user/fetchUser', async (data: UserPro
             url: `${Host}/user/login`,
             headers: {
                 'Content-Type': 'application/json',
+
             },
             data
         })
-        // if (results.data.token) {
-        //     setCookieToken(results.data.token)
-        // }
+        if (results.data.token) {
+            await setToken(results.data.token)
+
+        }
         return results.data
 
     } catch (error: any) {
@@ -44,6 +46,7 @@ export const userLogoutCookie = async () => {
                 'Content-Type': 'application/json',
             },
         })
+        await clearToken()
     }
     catch (error: any) {
         console.log(error)
@@ -57,6 +60,7 @@ export const subscriptions = async (id: string) => {
             url: `${Host}/user/subscribe/${id}`,
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
             },
         })
     }
@@ -71,6 +75,7 @@ export const addVideoHistory = async (id: string) => {
             url: `${Host}/user/history/${id}`,
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`
             },
         })
     }
