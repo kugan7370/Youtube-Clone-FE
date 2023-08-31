@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { CommentProps } from '../../types/Video'
+import { CommentProps, addVideoProps } from '../../types/Video'
 import { Host } from '../../Utils/host'
 import { getToken } from '../../Utils/Token'
 
@@ -125,6 +125,25 @@ export const addComment = async (data: CommentProps) => {
             data
         })
         return getVideo.data.video
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+export const addVideo = async (data: any, userId: String) => {
+    try {
+        const addVideo = await axios({
+            method: 'post',
+            url: `${Host}/video/add/${userId}`,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'accept': 'application/json',
+                'Authorization': `Bearer ${await getToken()}`
+
+            },
+            data
+        })
+        return addVideo.data.video
     }
     catch (error) {
         console.log(error)

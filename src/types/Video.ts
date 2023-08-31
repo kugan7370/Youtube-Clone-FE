@@ -18,6 +18,16 @@ export interface Videos {
     commentDetails: CommentDetail[]
 }
 
+export interface addVideoProps {
+    title: string
+    description: string
+    video: string
+    thumbnail: string
+    category: string
+    tags: string[]
+}
+
+
 export interface HomeVideos {
     _id: string
     title: string

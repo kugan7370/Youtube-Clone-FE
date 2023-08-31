@@ -36,7 +36,7 @@ function LoginModal({ isOpen, setisOpen }: Props) {
 
     return (
         <div className={`${!isOpen && "hidden"} absolute top-0 right-0 left-0 bottom-0 z-50  h-screen w-screen  flex item-center   bg-black bg-opacity-90 transition-opacity`}>
-            <div className="m-auto w-[50%] h-auto bg-white">
+            <div className="m-auto w-screen md:w-[50%] h-auto bg-white">
                 <div className="flex items-center justify-between p-4">
                     <h1 className='text-xl font-semibold'>Login</h1>
                     <IoCloseCircleOutline size={26} color={'red'} onClick={() => setisOpen(!isOpen)} />
