@@ -52,6 +52,6 @@ To run this project, you will need to add the following environment variables to
 
 ![detail-page](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/10fde12e-b29c-4603-bb20-d65cacc37802)
 
-![responsive-2](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/ad5be2bb-dfcd-4795-aef4-f8afa47b1630)
+![responsive-2](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/ad5be2bb-dfcd-4795-aef4-f8afa47b1630)   ![responsive](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/cf14886a-60a8-41bc-97c4-fad164f6d435)
 
-![responsive](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/cf14886a-60a8-41bc-97c4-fad164f6d435)
+
