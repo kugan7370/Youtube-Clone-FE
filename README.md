@@ -1,46 +1,57 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
-## Available Scripts
+# Ecommerce APP
 
-In the project directory, you can run:
+It's where you can share, watch, and connect through awesome videos. Whether you're into travel, comedy, or anything in between, our easy-to-use platform lets you share your own stories and talents while discovering new ones. With personalized recommendations, it's like your own tailor-made video world. Join us and dive into the fun!
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+    Login
+    Register
+    Video Streaming
+    Recommendation
+    Subscription
+    Search
+    Watch History
+    Likes
+    Dislikes
+    Comments
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    
+## Environment Variables
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run this project, you will need to add the following environment variables to your .env file
 
-### `npm run eject`
+`Mongo_Connect`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`JWT_SECRET`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Client:** React, Redux toolkit
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Server:** Node, Express
+
+**DB**: Mongo Atlas, Mongoose
+
+
+
+## Screenshots
+
+
+![Capture](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/71ec8f9a-a8a3-448a-bed2-1c7879bb9d67)
+
+![detail-page](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/10fde12e-b29c-4603-bb20-d65cacc37802)
+
+![responsive-2](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/ad5be2bb-dfcd-4795-aef4-f8afa47b1630)
+
+![responsive](https://github.com/kugan7370/Youtube-Clone-FE/assets/88609808/cf14886a-60a8-41bc-97c4-fad164f6d435)
